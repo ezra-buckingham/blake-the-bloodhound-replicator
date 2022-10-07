@@ -6,6 +6,39 @@ using System.Threading.Tasks;
 
 namespace Blake;
 
-internal class Group
+public class Ace
 {
+    public string PrincipalSID { get; set; }
+    public string PrincipalType { get; set; }
+    public string RightName { get; set; }
+    public bool IsInherited { get; set; }
+}
+
+public class Member
+{
+    public string ObjectIdentifier { get; set; }
+    public string ObjectType { get; set; }
+}
+
+public class Properties
+{
+    public string domain { get; set; }
+    public string name { get; set; }
+    public string distinguishedname { get; set; }
+    public string domainsid { get; set; }
+    public bool highvalue { get; set; }
+    public string samaccountname { get; set; }
+    public string description { get; set; }
+    public int whencreated { get; set; }
+    public bool admincount { get; set; }
+}
+
+public class Group
+{
+    public Properties Properties { get; set; }
+    public List<Member> Members { get; set; }
+    public List<Ace> Aces { get; set; }
+    public string ObjectIdentifier { get; set; }
+    public bool IsDeleted { get; set; }
+    public bool IsACLProtected { get; set; }
 }

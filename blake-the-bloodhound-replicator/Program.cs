@@ -45,15 +45,31 @@ class Program
 
     static void ParseJSONFiles(DirectoryInfo directory) 
     {
+        // Read in all the JSON files
         FileInfo computersFile = new FileInfo(directory.FullName);
-        FileInfo containersFile = new FileInfo(directory.FullName);
-        FileInfo usersFile = new FileInfo(directory.FullName);
-        FileInfo domainsFile = new FileInfo(directory.FullName);
-        FileInfo organizationalUnitsFile = new FileInfo(directory.FullName);
-        FileInfo groupsFile = new FileInfo(directory.FullName);
-    
+        string computersFileContents = System.IO.File.ReadAllText(computersFile.ToString());
 
-        Computer myDeserializedClass = JsonConvert.DeserializeObject<Computer>(myJsonResponse);
+        FileInfo containersFile = new FileInfo(directory.FullName);
+        string containersFileContents = System.IO.File.ReadAllText(containersFile.ToString());
+
+        FileInfo domainsFile = new FileInfo(directory.FullName);
+        string domainsFileContents = System.IO.File.ReadAllText(domainsFile.ToString());
+
+        FileInfo groupPoliciesFile = new FileInfo(directory.FullName);
+        string groupPoliciesFileContents = System.IO.File.ReadAllText(groupPoliciesFile.ToString());
+
+        FileInfo groupsFile = new FileInfo(directory.FullName);
+        string groupsFileContents = System.IO.File.ReadAllText(groupsFile.ToString());
+
+        FileInfo organizationalUnitsFile = new FileInfo(directory.FullName);
+        string organizationalUnitsFileContents = System.IO.File.ReadAllText(organizationalUnitsFile.ToString());
+
+        FileInfo usersFile = new FileInfo(directory.FullName);
+        string usersFileContents = System.IO.File.ReadAllText(usersFile.ToString());
+   
+
+        List<Computer> computerObjects = JsonConvert.DeserializeObject<List<Computer>>(computersFileContents);
+
     }
 }
 

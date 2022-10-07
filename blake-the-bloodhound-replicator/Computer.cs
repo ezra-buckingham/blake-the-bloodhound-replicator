@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 namespace Blake;
 
-public class Computer 
-{ 
-
-
 // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
 public class Ace
 {
@@ -49,7 +45,7 @@ public class Properties
     public bool highvalue { get; set; }
     public string samaccountname { get; set; }
     public bool haslaps { get; set; }
-    public string description { get; set; }
+    public object description { get; set; }
     public int whencreated { get; set; }
     public bool enabled { get; set; }
     public bool unconstraineddelegation { get; set; }
@@ -57,8 +53,8 @@ public class Properties
     public int lastlogon { get; set; }
     public int lastlogontimestamp { get; set; }
     public int pwdlastset { get; set; }
-    public List<object> serviceprincipalnames { get; set; }
-    public object operatingsystem { get; set; }
+    public List<string> serviceprincipalnames { get; set; }
+    public string operatingsystem { get; set; }
     public List<object> sidhistory { get; set; }
 }
 
@@ -82,15 +78,31 @@ public class RemoteDesktopUsers
     public bool Collected { get; set; }
     public object FailureReason { get; set; }
 }
-    public class Sessions
-    {
-        public List<object> Results { get; set; }
-        public bool Collected { get; set; }
-        public object FailureReason { get; set; }
-    }
+
+public class Sessions
+{
+    public List<object> Results { get; set; }
+    public bool Collected { get; set; }
+    public object FailureReason { get; set; }
 }
 
-
-
-
-
+public class Computer
+{
+    public Properties Properties { get; set; }
+    public string PrimaryGroupSID { get; set; }
+    public List<object> AllowedToDelegate { get; set; }
+    public List<object> AllowedToAct { get; set; }
+    public List<object> HasSIDHistory { get; set; }
+    public Sessions Sessions { get; set; }
+    public PrivilegedSessions PrivilegedSessions { get; set; }
+    public RegistrySessions RegistrySessions { get; set; }
+    public LocalAdmins LocalAdmins { get; set; }
+    public RemoteDesktopUsers RemoteDesktopUsers { get; set; }
+    public DcomUsers DcomUsers { get; set; }
+    public PSRemoteUsers PSRemoteUsers { get; set; }
+    public object Status { get; set; }
+    public List<Ace> Aces { get; set; }
+    public string ObjectIdentifier { get; set; }
+    public bool IsDeleted { get; set; }
+    public bool IsACLProtected { get; set; }
+}
