@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blake;
 
-public class Ace
+public class DomainAce
 {
     public string PrincipalSID { get; set; }
     public string PrincipalType { get; set; }
@@ -41,7 +41,7 @@ public class Link
     public string GUID { get; set; }
 }
 
-public class Properties
+public class DomainProperties
 {
     public string domain { get; set; }
     public string name { get; set; }
@@ -56,11 +56,11 @@ public class Properties
 public class Domain
 {
     public GPOChanges GPOChanges { get; set; }
-    public Properties Properties { get; set; }
+    public DomainProperties Properties { get; set; }
     public List<ChildObject> ChildObjects { get; set; }
     public List<object> Trusts { get; set; }
     public List<Link> Links { get; set; }
-    public List<Ace> Aces { get; set; }
+    public List<DomainAce> Aces { get; set; }
     public string ObjectIdentifier { get; set; }
     public bool IsDeleted { get; set; }
     public bool IsACLProtected { get; set; }

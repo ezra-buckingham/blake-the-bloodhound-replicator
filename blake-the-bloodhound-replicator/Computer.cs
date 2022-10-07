@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Blake;
 
 // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
-public class Ace
+public class ComputerAce
 {
     public string PrincipalSID { get; set; }
     public string PrincipalType { get; set; }
@@ -36,7 +36,7 @@ public class PrivilegedSessions
     public object FailureReason { get; set; }
 }
 
-public class Properties
+public class ComputerProperties
 {
     public string domain { get; set; }
     public string name { get; set; }
@@ -88,7 +88,7 @@ public class Sessions
 
 public class Computer
 {
-    public Properties Properties { get; set; }
+    public ComputerProperties Properties { get; set; }
     public string PrimaryGroupSID { get; set; }
     public List<object> AllowedToDelegate { get; set; }
     public List<object> AllowedToAct { get; set; }
@@ -101,7 +101,7 @@ public class Computer
     public DcomUsers DcomUsers { get; set; }
     public PSRemoteUsers PSRemoteUsers { get; set; }
     public object Status { get; set; }
-    public List<Ace> Aces { get; set; }
+    public List<ComputerAce> Aces { get; set; }
     public string ObjectIdentifier { get; set; }
     public bool IsDeleted { get; set; }
     public bool IsACLProtected { get; set; }

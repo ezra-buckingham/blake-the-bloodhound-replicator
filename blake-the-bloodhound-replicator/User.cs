@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blake;
 
-public class Ace
+public class UserAce
 {
     public string PrincipalSID { get; set; }
     public string PrincipalType { get; set; }
@@ -14,7 +14,7 @@ public class Ace
     public bool IsInherited { get; set; }
 }
 
-public class Properties
+public class UserProperties
 {
     public string domain { get; set; }
     public string name { get; set; }
@@ -51,12 +51,12 @@ public class Properties
 
 public class User
 {
-    public Properties Properties { get; set; }
+    public UserProperties Properties { get; set; }
     public List<object> AllowedToDelegate { get; set; }
     public string PrimaryGroupSID { get; set; }
     public List<object> HasSIDHistory { get; set; }
     public List<object> SPNTargets { get; set; }
-    public List<Ace> Aces { get; set; }
+    public List<UserAce> Aces { get; set; }
     public string ObjectIdentifier { get; set; }
     public bool IsDeleted { get; set; }
     public bool IsACLProtected { get; set; }

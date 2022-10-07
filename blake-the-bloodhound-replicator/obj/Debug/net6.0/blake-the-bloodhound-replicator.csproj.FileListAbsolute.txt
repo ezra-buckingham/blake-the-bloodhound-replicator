@@ -28,3 +28,4 @@ C:\Users\ezrab\source\repos\blake-the-bloodhound-replicator\blake-the-bloodhound
 C:\Users\ezrab\source\repos\blake-the-bloodhound-replicator\blake-the-bloodhound-replicator\obj\Debug\net6.0\blake-the-bloodhound-replicator.pdb
 C:\Users\ezrab\source\repos\blake-the-bloodhound-replicator\blake-the-bloodhound-replicator\obj\Debug\net6.0\blake-the-bloodhound-replicator.genruntimeconfig.cache
 C:\Users\ezrab\source\repos\blake-the-bloodhound-replicator\blake-the-bloodhound-replicator\obj\Debug\net6.0\ref\blake-the-bloodhound-replicator.dll
+C:\Users\ezrab\source\repos\blake-the-bloodhound-replicator\blake-the-bloodhound-replicator\bin\Debug\net6.0\Newtonsoft.Json.dll

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CommandLine;
 using System.IO;
+using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
 namespace Blake;
@@ -24,7 +25,7 @@ class Program
         {
             
             DirectoryInfo extractedZip = ExtractZipFile(file!);
-
+            BloodHoundData bloodHoundData = ParseJSONFiles(extractedZip);
 
         },
             fileOption);
@@ -37,38 +38,63 @@ class Program
         string newDirectoryName = file.Name.Split('.')[0] + "_extract";
         DirectoryInfo newDirectoryPath = new DirectoryInfo(Path.Combine(file.Directory.ToString(), newDirectoryName.ToString()));
 
-        //System.IO.Compression.ZipFile.CreateFromDirectory(startPath, zipPath);
-        System.IO.Compression.ZipFile.ExtractToDirectory(file.ToString(), newDirectoryPath.ToString());
-
+        // If the path doesn't exist, extract
+        if (!newDirectoryPath.Exists)
+        {
+            System.IO.Compression.ZipFile.ExtractToDirectory(file.ToString(), newDirectoryPath.ToString());
+        }
+        
         return newDirectoryPath;
     }
 
-    static void ParseJSONFiles(DirectoryInfo directory) 
+    static BloodHoundData ParseJSONFiles(DirectoryInfo directory) 
     {
+        // Extract the date from the directory
+        Regex pattern = new Regex(@"([0-9]){14}");
+        Match date = pattern.Match(directory.ToString());
+
         // Read in all the JSON files
-        FileInfo computersFile = new FileInfo(directory.FullName);
+        string computersFilePath = Path.Combine(directory.ToString(), date + "_computers.json");
+        FileInfo computersFile = new FileInfo(computersFilePath);
         string computersFileContents = System.IO.File.ReadAllText(computersFile.ToString());
 
-        FileInfo containersFile = new FileInfo(directory.FullName);
+        string containersFilePath = Path.Combine(directory.ToString(), date + "_containers.json");
+        FileInfo containersFile = new FileInfo(containersFilePath);
         string containersFileContents = System.IO.File.ReadAllText(containersFile.ToString());
 
-        FileInfo domainsFile = new FileInfo(directory.FullName);
+        string domainsFilePath = Path.Combine(directory.ToString(), date + "_domains.json");
+        FileInfo domainsFile = new FileInfo(domainsFilePath);
         string domainsFileContents = System.IO.File.ReadAllText(domainsFile.ToString());
 
-        FileInfo groupPoliciesFile = new FileInfo(directory.FullName);
+        string groupPoliciesFilePath = Path.Combine(directory.ToString(), date + "_gpos.json");
+        FileInfo groupPoliciesFile = new FileInfo(groupPoliciesFilePath);
         string groupPoliciesFileContents = System.IO.File.ReadAllText(groupPoliciesFile.ToString());
 
-        FileInfo groupsFile = new FileInfo(directory.FullName);
+        string groupsFilePath = Path.Combine(directory.ToString(), date + "_groups.json");
+        FileInfo groupsFile = new FileInfo(groupsFilePath);
         string groupsFileContents = System.IO.File.ReadAllText(groupsFile.ToString());
 
-        FileInfo organizationalUnitsFile = new FileInfo(directory.FullName);
+        string organizationalUnitsFilePath = Path.Combine(directory.ToString(), date + "_ous.json");
+        FileInfo organizationalUnitsFile = new FileInfo(organizationalUnitsFilePath);
         string organizationalUnitsFileContents = System.IO.File.ReadAllText(organizationalUnitsFile.ToString());
 
-        FileInfo usersFile = new FileInfo(directory.FullName);
+        string usersFilePath = Path.Combine(directory.ToString(), date + "_users.json");
+        FileInfo usersFile = new FileInfo(usersFilePath);
         string usersFileContents = System.IO.File.ReadAllText(usersFile.ToString());
    
+        // Deserialize all the data
+        //BloodHoundJSONWrapper<Computer> computerObjects = JsonConvert.DeserializeObject<BloodHoundJSONWrapper<Computer>>(computersFileContents);
+        object containerObjects = JsonConvert.DeserializeObject<object>(containersFileContents);
+        //object domainObjects = JsonConvert.DeserializeObject<object>(domainsFileContents);
+        //object groupPolicyObjects = JsonConvert.DeserializeObject<object>(groupPoliciesFileContents);
+        //object groupObjects = JsonConvert.DeserializeObject<object>(groupsFileContents);
+        //object organizationalUnitObjects = JsonConvert.DeserializeObject<object>(organizationalUnitsFileContents);
+        //object userObjects = JsonConvert.DeserializeObject<object>(usersFileContents);
 
-        List<Computer> computerObjects = JsonConvert.DeserializeObject<List<Computer>>(computersFileContents);
+        // Convert it to BloodHound Data
+        BloodHoundData bloodhoundData = new BloodHoundData();//computerObjects, containerObjects, domainObjects, groupPolicyObjects, groupObjects, organizationalUnitObjects, userObjects);
+
+        return bloodhoundData;
 
     }
 }

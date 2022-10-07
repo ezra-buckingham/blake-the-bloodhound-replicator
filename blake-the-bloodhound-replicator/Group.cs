@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blake;
 
-public class Ace
+public class GroupAce
 {
     public string PrincipalSID { get; set; }
     public string PrincipalType { get; set; }
@@ -20,7 +20,7 @@ public class Member
     public string ObjectType { get; set; }
 }
 
-public class Properties
+public class GroupProperties
 {
     public string domain { get; set; }
     public string name { get; set; }
@@ -35,9 +35,9 @@ public class Properties
 
 public class Group
 {
-    public Properties Properties { get; set; }
+    public GroupProperties Properties { get; set; }
     public List<Member> Members { get; set; }
-    public List<Ace> Aces { get; set; }
+    public List<GroupAce> Aces { get; set; }
     public string ObjectIdentifier { get; set; }
     public bool IsDeleted { get; set; }
     public bool IsACLProtected { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Blake;
 
-public class Ace
+public class OrganizationalUnitAce
 {
     public string PrincipalSID { get; set; }
     public string PrincipalType { get; set; }
@@ -14,13 +14,13 @@ public class Ace
     public bool IsInherited { get; set; }
 }
 
-public class ChildObject
+public class OrganizationalUnitChildObject
 {
     public string ObjectIdentifier { get; set; }
     public string ObjectType { get; set; }
 }
 
-public class GPOChanges
+public class OrganizationalUnitGPOChanges
 {
     public List<object> LocalAdmins { get; set; }
     public List<object> RemoteDesktopUsers { get; set; }
@@ -29,7 +29,7 @@ public class GPOChanges
     public List<object> AffectedComputers { get; set; }
 }
 
-public class Properties
+public class OrganizationalUnitProperties
 {
     public string domain { get; set; }
     public string name { get; set; }
@@ -43,11 +43,11 @@ public class Properties
 
 public class OrganizationalUnit
 {
-    public GPOChanges GPOChanges { get; set; }
-    public Properties Properties { get; set; }
+    public OrganizationalUnitGPOChanges GPOChanges { get; set; }
+    public OrganizationalUnitProperties Properties { get; set; }
     public List<object> Links { get; set; }
-    public List<ChildObject> ChildObjects { get; set; }
-    public List<Ace> Aces { get; set; }
+    public List<OrganizationalUnitChildObject> ChildObjects { get; set; }
+    public List<OrganizationalUnitAce> Aces { get; set; }
     public string ObjectIdentifier { get; set; }
     public bool IsDeleted { get; set; }
     public bool IsACLProtected { get; set; }
