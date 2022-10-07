@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "9/GrRvyyUnB0ULIyJdn9ajiOAtAgcrnsXbX9mIui5qJ9SC5T3sGl3T/ew/bXSB6AWmsWFJ1RVKeB0MZhAYuDMw==",
+  "dgSpecHash": "VlUXosa7vbv5sffDcrY2XmmQDNV6edSHSsdmej+KlG/7Pn550mB6ndRBqdsKXNkbprYM2eyV1phtRJPJTN5Omw==",
   "success": true,
   "projectFilePath": "C:\\Users\\ezrab\\source\\repos\\blake-the-bloodhound-replicator\\blake-the-bloodhound-replicator\\blake-the-bloodhound-replicator.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\ezrab\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\ezrab\\.nuget\\packages\\system.commandline\\2.0.0-beta4.22272.1\\system.commandline.2.0.0-beta4.22272.1.nupkg.sha512"
   ],
   "logs": []

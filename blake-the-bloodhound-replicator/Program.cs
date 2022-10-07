@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CommandLine;
 using System.IO;
+using Newtonsoft.Json;
 
 namespace Blake;
 
@@ -43,8 +44,16 @@ class Program
     }
 
     static void ParseJSONFiles(DirectoryInfo directory) 
-    { 
-        
+    {
+        FileInfo computersFile = new FileInfo(directory.FullName);
+        FileInfo containersFile = new FileInfo(directory.FullName);
+        FileInfo usersFile = new FileInfo(directory.FullName);
+        FileInfo domainsFile = new FileInfo(directory.FullName);
+        FileInfo organizationalUnitsFile = new FileInfo(directory.FullName);
+        FileInfo groupsFile = new FileInfo(directory.FullName);
+    
+
+        Computer myDeserializedClass = JsonConvert.DeserializeObject<Computer>(myJsonResponse);
     }
 }
 
