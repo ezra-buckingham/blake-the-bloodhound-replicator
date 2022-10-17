@@ -6,26 +6,6 @@ using System.Threading.Tasks;
 
 namespace Blake;
 
-public class BloodHoundJSONMetaData 
-{
-    public int methods { get; set; }
-    public string type { get; set; }
-    public int count { get; set; }
-    public int version { get; set; }
-}
-
-public class BloodHoundJSONWrapper<T>
-{
-    public List<T> data { get; set; }
-    public BloodHoundJSONMetaData meta { get; set; }
-
-    public BloodHoundJSONWrapper(object deserializedJson) 
-    { 
-        //List
-    }
-}
-
-
 public class BloodHoundData
 {
     public List<Computer> computers { get; set; }
@@ -36,15 +16,14 @@ public class BloodHoundData
     public List<OrganizationalUnit> organizationalUnits { get; set; }
     public List<User> users { get; set; }
 
-    public BloodHoundData(List<Computer> computers, List<Container> containers, List<Domain> domains, List<GroupPolicy> groupPolicies, List<Group> groups, List<OrganizationalUnit> organizationalUnits, List<User> users)
+    public BloodHoundData(List<Computer> computerList, List<Container> containerList, List<Domain> domainList, List<GroupPolicy> groupPolicyList, List<Group> groupList, List<OrganizationalUnit> organizationalUnitList, List<User> userList)
     {
-        computers = computers;
-        containers = containers;
-        domains = domains;
-        groupPolicies = groupPolicies;
-        groups = groups;
-        users = users;
+        computers = computerList;
+        containers = containerList;
+        domains = domainList;
+        groupPolicies = groupPolicyList;
+        groups = groupList;
+        organizationalUnits = organizationalUnitList;
+        users = userList;
     }
-
-    public BloodHoundData() { }
 }

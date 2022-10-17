@@ -3,6 +3,7 @@ using System.CommandLine;
 using System.IO;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Blake;
 
@@ -81,21 +82,41 @@ class Program
         string usersFilePath = Path.Combine(directory.ToString(), date + "_users.json");
         FileInfo usersFile = new FileInfo(usersFilePath);
         string usersFileContents = System.IO.File.ReadAllText(usersFile.ToString());
-   
+
         // Deserialize all the data
-        //BloodHoundJSONWrapper<Computer> computerObjects = JsonConvert.DeserializeObject<BloodHoundJSONWrapper<Computer>>(computersFileContents);
-        object containerObjects = JsonConvert.DeserializeObject<object>(containersFileContents);
-        //object domainObjects = JsonConvert.DeserializeObject<object>(domainsFileContents);
-        //object groupPolicyObjects = JsonConvert.DeserializeObject<object>(groupPoliciesFileContents);
-        //object groupObjects = JsonConvert.DeserializeObject<object>(groupsFileContents);
-        //object organizationalUnitObjects = JsonConvert.DeserializeObject<object>(organizationalUnitsFileContents);
-        //object userObjects = JsonConvert.DeserializeObject<object>(usersFileContents);
+        dynamic computerJSON = JsonConvert.DeserializeObject<object>(computersFileContents);
+        JArray computerArray = computerJSON["data"] as JArray;
+        var computers = computerArray.ToObject<List<Computer>>();
+
+        dynamic containerJSON = JsonConvert.DeserializeObject<object>(containersFileContents);
+        JArray containerArray = containerJSON["data"] as JArray;
+        var containers = containerArray.ToObject<List<Container>>();
+
+        dynamic domainJSON = JsonConvert.DeserializeObject<object>(domainsFileContents);
+        JArray domainArray = domainJSON["data"] as JArray;
+        var domains = domainArray.ToObject<List<Domain>>();
+
+        dynamic groupPolicyJSON = JsonConvert.DeserializeObject<object>(groupPoliciesFileContents);  
+        JArray groupPolicyArray = groupPolicyJSON["data"] as JArray;
+        var groupPolicies = groupPolicyArray.ToObject<List<GroupPolicy>>();
+
+        dynamic groupJSON = JsonConvert.DeserializeObject<object> (groupsFileContents);
+        JArray groupArray = groupJSON["data"] as JArray;
+        var groups = groupArray.ToObject<List<Group>>();
+
+        dynamic organizationalUnitJSON = JsonConvert.DeserializeObject<object> (organizationalUnitsFileContents);
+        JArray organizationalUnitArray = organizationalUnitJSON["data"] as JArray;
+        var organizationalUnits = organizationalUnitArray.ToObject<List<OrganizationalUnit>>();
+
+        dynamic userJSON = JsonConvert.DeserializeObject<object>(usersFileContents);
+        JArray userArray = userJSON["data"] as JArray;
+        var users = userArray.ToObject<List<User>>();
+
 
         // Convert it to BloodHound Data
-        BloodHoundData bloodhoundData = new BloodHoundData();//computerObjects, containerObjects, domainObjects, groupPolicyObjects, groupObjects, organizationalUnitObjects, userObjects);
+        BloodHoundData bloodhoundData = new BloodHoundData(computers, containers, domains, groupPolicies, groups, organizationalUnits, users);
 
         return bloodhoundData;
-
     }
 }
 
